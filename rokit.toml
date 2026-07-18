@@ -1,0 +1,5 @@
+[tools]
+selene = "Kampfkarren/selene@0.31.0"
+stylua = "JohnnyMorganz/StyLua@2.5.2"
+luau-lsp = "JohnnyMorganz/luau-lsp@1.68.1"
+zune = "Scythe-Technology/zune@0.5.7"
