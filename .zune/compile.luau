@@ -14,7 +14,8 @@ local result = process.run("zune", {
     "bundle", 
     "src/index.luau", 
     "src/**/*.luau", 
-    "--out=dist/hanan" 
+    "--out=dist/hanan",
+    "--release",
 }, {
     stderr = "inherit",
     stdin = "inherit",
