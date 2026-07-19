@@ -11,7 +11,7 @@ if success then
 end
 
 local function getVersion()
-	local result = process.run("git", {"describe", "--tags", "--always"})
+	local result = process.run("git", {"describe", "--tags", "--abbrev=0", "--always"})
 	if result.ok then
 		return ((result.stdout or ""):gsub("%s+$", ""))
 	end
