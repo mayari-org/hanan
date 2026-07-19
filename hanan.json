@@ -1,0 +1,10 @@
+{
+	"scripts": {
+		"test": "echo \"Hello, World\""
+	},
+	"engines": {
+        "lute": ">=v1.0.0",
+		"lune": ">=v0.10.5",
+		"zune": ">=v0.5.7"
+	}
+}

@@ -1,26 +1,37 @@
 local select = require("../libs/cli/select")
-local process = zune.process
+local createManifest = require("../libs/manifest").createManifest
+local fetchEngineVersion = require("../libs/fetchEngineVersion")
 
-local function exectute()
-	local runtime = select.select("Select a runtime:", {
-		{ label = "Lute", value = "lute", hint = "Built in C++" },
-		{ label = "Lune", value = "lune", hint = "Built in Rust" },
-		{ label = "Zune", value = "zune", hint = "Built in Zig" },
-	})
+local engines = {
+    lute = "luau-lang/lute",
+    lune = "lune-org/lune",
+    zune = "Scythe-Technology/zune"
+}
 
-	if not runtime then
-		process.exit(1)
+local manifestTemplate: ManifestTemplate = {
+    scripts = {
+        ["test"] = "echo \"Error: no test specified\" && exit 1",
+    },
+}
+
+local function exectute(_, flags: { [string]: boolean }?)
+	if flags and flags["y"] then
+        manifestTemplate.engines = {
+            lute = `>={fetchEngineVersion(engines.lute)}`
+        }
+    else
+        local runtime = select.select("Select a runtime:", {
+            { label = "Lute", value = "lute", hint = "Built in C++" },
+            { label = "Lune", value = "lune", hint = "Built in Rust" },
+            { label = "Zune", value = "zune", hint = "Built in Zig" },
+        }) :: string
+
+        manifestTemplate.engines = {
+            [runtime] = `>={fetchEngineVersion(engines[runtime])}`
+        }
 	end
 
-	local pm = select.select("Select a package manager:", {
-		{ label = "NPM", value = "npm", hint = "Node Package Manager" },
-		{ label = "LPM", value = "lpm", hint = "Luau Package Manager" },
-		{ label = "Bun", value = "bun", hint = "Bun Package Manager" },
-	})
-
-	if not pm then
-		process.exit(1)
-	end
+    createManifest(manifestTemplate)
 end
 
 return {

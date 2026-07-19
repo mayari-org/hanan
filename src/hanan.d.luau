@@ -9,7 +9,7 @@ export type ManifestTemplate = {
 	scripts: { [string]: string }?,
 	lib: string?,
 	bin: string?,
-	runtimes: { [string]: string }?,
+	engines: { [string]: string }?,
 	includes: { string }?,
 	dependencies: { [string]: string }?,
 	dev_dependencies: { [string]: string }?,
