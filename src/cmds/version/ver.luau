@@ -1,2 +1,2 @@
 -- AUTO-GENERATED, do not edit
-return "v0.0.1"
+return "v0.0.3"
