@@ -1,6 +1,7 @@
 {
 	"scripts": {
-		"test": "echo \"Hello, World\""
+		"test": "echo \"Hello, World\"",
+        "build": "zune run .zune/build"
 	},
 	"engines": {
         "lute": ">=v1.0.0",
