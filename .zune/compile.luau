@@ -1,7 +1,6 @@
 local process = zune.process
 local fs = zune.fs
 local io = zune.io
-local platform = zune.platform
 
 local success, _e = pcall(function()
     return fs.readFileSync("./hanan")
@@ -21,19 +20,11 @@ end
 
 fs.writeFile("src/cmds/version/ver.luau", `-- AUTO-GENERATED, do not edit\nreturn "{getVersion()}"\n`)
 
-local binaryName = ""
-
-if platform.os == "windows" then
-    binaryName = "hanan.exe"
-else
-    binaryName = "hanan"
-end
-
 local result = process.run("zune", { 
     "bundle", 
     "src/index.luau", 
     "src/**/*.luau", 
-    `--out=dist/{binaryName}`,
+    "--out=dist/hanan",
     "--release",
 }, {
     stderr = "inherit",
