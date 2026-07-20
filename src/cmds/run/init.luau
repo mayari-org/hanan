@@ -22,6 +22,17 @@ local function execute(args: { string })
     print(`\n> {subcmd}\n`)
 
     for _, group in tokenize(subcmd) do
+        if group.command == "exit" then
+            local exitCode = tonumber(group.args[1])
+            
+            if not exitCode then
+                error(`Illegal exit code: {group.args[1]}`)
+            end
+
+            process.exit(exitCode)
+            break
+        end
+        
         local result = process.run(group.command, group.args, { 
             stdout = "inherit",
             stdin = "inherit",

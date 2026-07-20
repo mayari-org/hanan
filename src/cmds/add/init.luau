@@ -1,8 +1,8 @@
-local function exectute()
+local function execute()
 	print("Using Add command")
 end
 
 return {
-	execute = exectute,
-	desc = "Adds a new dependency.",
+	execute = execute,
+	desc = "Add new dependencies.",
 }

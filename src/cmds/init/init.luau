@@ -14,7 +14,7 @@ local manifestTemplate: ManifestTemplate = {
     },
 }
 
-local function exectute(_, flags: { [string]: boolean }?)
+local function execute(_, flags: { [string]: boolean }?)
 	if flags and flags["y"] then
         manifestTemplate.engines = {
             lute = `>={fetchEngineVersion(engines.lute)}`
@@ -35,6 +35,6 @@ local function exectute(_, flags: { [string]: boolean }?)
 end
 
 return {
-	execute = exectute,
+	execute = execute,
 	desc = "initializes a Hanan manifest",
 }
