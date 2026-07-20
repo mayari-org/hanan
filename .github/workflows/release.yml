@@ -31,8 +31,8 @@ jobs:
       - name: Setup Rokit
         uses: CompeyDev/setup-rokit@v0.2.1
 
-      - name: Compile
-        run: zune run compile
+      - name: Build
+        run: hanan run build
 
       - name: Zip binary (Unix)
         if: runner.os != 'Windows'
