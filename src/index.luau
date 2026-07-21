@@ -1,6 +1,7 @@
 local process = zune.process
 local version = require("./cmds/version")
 local cmds = require("./cmdList")
+local hananErr = require("./libs/hananErr")
 
 local subcmd: string? = nil
 local args: { string } = {}
@@ -56,20 +57,11 @@ local stopParsingFlags = false
 	local cmd = cmds[subcmd]
 
 	if not cmd then
-		print("Command does not exist")
+		hananErr(`Command "{subcmd}" does not exist`)
 		process.exit(1)
 	elseif subcmd == "help" then
 		cmds.help.execute(cmds, args)
 		return
-	end
-
-	for flag, _ in flags do
-		if not flags[flag] then
-			print("Unknown flag: " .. flag)
-			process.exit(1)
-		else
-			print("Flag: " .. flag)
-		end
 	end
 
 	cmd.execute(args, flags)

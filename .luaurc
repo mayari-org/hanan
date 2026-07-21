@@ -1,12 +1,9 @@
 {
     "languageMode": "strict",
     "aliases": {
-        "transform": "@std/commands/transform/types",
-        "lute": "~/.lute/typedefs/1.0.1/lute",
-        "std": "~/.lute/typedefs/1.0.1/std",
-        "lint": "@std/commands/lint/types",
         "lib": "./src/libs/",
         "src": "./src/",
-        "cmds": "./src/cmds/"
+        "cmds": "./src/cmds/",
+        "mayari-org": "./.luau_modules/mayari-org/"
     }
 }

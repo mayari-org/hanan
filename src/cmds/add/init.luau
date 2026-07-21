@@ -1,5 +1,5 @@
-local function execute()
-	print("Using Add command")
+local function execute(args: { string }, flags: { [string]: string })
+	
 end
 
 return {
