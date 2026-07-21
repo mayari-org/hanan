@@ -32,7 +32,9 @@ end
 local result = process.run("zune", { 
     "bundle", 
     "src/index.luau", 
-    "src/**/*.luau", 
+    "src/**/*.luau",
+    "-f",
+    ".luaurc",
     `--out=dist/{binaryName}`,
     "--release",
 }, {
