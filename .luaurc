@@ -3,7 +3,6 @@
     "aliases": {
         "lib": "./src/libs/",
         "src": "./src/",
-        "cmds": "./src/cmds/",
-        "mayari-org": "./.luau_modules/mayari-org/"
+        "cmds": "./src/cmds/"
     }
 }
