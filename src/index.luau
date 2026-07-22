@@ -58,7 +58,6 @@ local stopParsingFlags = false
 
 	if not cmd then
 		hananErr(`Command "{subcmd}" does not exist`)
-		process.exit(1)
 	elseif subcmd == "help" then
 		cmds.help.execute(cmds, args)
 		return

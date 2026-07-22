@@ -3,30 +3,33 @@ local json5 = zune.serde.json
 local fs = zune.fs
 
 local tokenize = require("@self/tokenize")
+local hananErr = require("@libs/hananErr")
 
 local function execute(args: { string })
     local jsonContent = fs.readFileSync(`{process.cwd()}/hanan.json`)
     local manifestContent: ManifestTemplate = json5.decode(jsonContent)
 
     local scriptName = args[1]
-    local subcmd = nil
+    local scrpt = nil
 
     if manifestContent.scripts then
-        subcmd = manifestContent.scripts[scriptName]
+        scrpt = manifestContent.scripts[scriptName]
     end
 
-    if not subcmd then
-        error("Unknown script")
+    if not scrpt then
+        hananErr(`Script "{scriptName}" does not exist`)
+        return
     end
     
-    print(`\n> {subcmd}\n`)
+    print(`\n> {scrpt}\n`)
 
-    for _, group in tokenize(subcmd) do
+    for _, group in tokenize(scrpt) do
         if group.command == "exit" then
             local exitCode = tonumber(group.args[1])
             
             if not exitCode then
-                error(`Illegal exit code: {group.args[1]}`)
+                hananErr(`Illegal exit code: {group.args[1]}`)
+                break
             end
 
             process.exit(exitCode)
@@ -46,5 +49,5 @@ end
 
 return {
     execute = execute,
-    desc = "runs a command from the hanan manifest",
+    desc = "runs a script from the hanan manifest",
 }
