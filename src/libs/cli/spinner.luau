@@ -21,7 +21,7 @@ Spinner.__index = Spinner
 
 export type Spinner = {
 	start: (self: Spinner) -> (),
-	stop: (self: Spinner, symbol: string, finalLabel: string?) -> (),
+	stop: (self: Spinner, symbol: string?, finalLabel: string?) -> (),
 	label: string,
 	thread: thread?,
 }
@@ -34,7 +34,7 @@ function Spinner.new(label: string)
 end
 
 function Spinner.start(self: Spinner)
-	io.terminal.enableRawMode() -- disables ECHO, stops the terminal printing ^C itself
+	io.terminal.enableRawMode()
 	io.stdout:write(ansi.hideCursor())
 
 	self.thread = task.spawn(function()
@@ -49,14 +49,16 @@ function Spinner.start(self: Spinner)
 	end)
 end
 
-function Spinner.stop(self: Spinner, symbol: string, finalLabel: string?)
+function Spinner.stop(self: Spinner, symbol: string?, finalLabel: string?)
 	if self.thread then
 		task.cancel(self.thread)
 		self.thread = nil
 	end
 
-	io.stdout:write(ansi.ESC .. "[2K\r") -- erase-line, correct regardless of label/frame length
-	io.stdout:write(`{symbol} {finalLabel or self.label}\n`)
+	io.stdout:write(ansi.ESC .. "[2K\r")
+	if symbol and symbol ~= "" then
+		io.stdout:write(`{symbol} {finalLabel or self.label}\n`)
+	end
 
 	io.stdout:write(ansi.showCursor())
 	io.terminal.restoreMode()

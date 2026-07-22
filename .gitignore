@@ -1,1 +1,4 @@
 dist/
+.luau_modules/
+
+.env
