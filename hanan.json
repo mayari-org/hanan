@@ -7,5 +7,10 @@
         "lute": ">=v1.0.0",
 		"lune": ">=v0.10.5",
 		"zune": ">=v0.5.7"
+	},
+	"dependencies": {
+		"mayari-org/create": "^0.1.4",
+		"mayari-org/hanan": "^0.0.3",
+		"mayari-org/mayari": "^0.6.0"
 	}
 }
