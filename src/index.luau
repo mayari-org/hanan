@@ -1,7 +1,7 @@
 local process = zune.process
-local version = require("./cmds/version")
+local version = require("@cmds/version")
 local cmds = require("./cmdList")
-local hananErr = require("./libs/hananErr")
+local hananErr = require("@libs/hananErr")
 
 local subcmd: string? = nil
 local args: { string } = {}
@@ -58,7 +58,6 @@ local stopParsingFlags = false
 
 	if not cmd then
 		hananErr(`Command "{subcmd}" does not exist`)
-		process.exit(1)
 	elseif subcmd == "help" then
 		cmds.help.execute(cmds, args)
 		return
