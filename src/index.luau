@@ -1,7 +1,7 @@
 local process = zune.process
-local version = require("./cmds/version")
+local version = require("@cmds/version")
 local cmds = require("./cmdList")
-local hananErr = require("./libs/hananErr")
+local hananErr = require("@libs/hananErr")
 
 local subcmd: string? = nil
 local args: { string } = {}

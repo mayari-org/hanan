@@ -1,6 +1,6 @@
-local select = require("../libs/cli/select")
-local createManifest = require("../libs/manifest").createManifest
-local fetchEngineVersion = require("../libs/fetchEngineVersion")
+local select = require("@libs/cli/select")
+local createManifest = require("@libs/manifest").createManifest
+local fetchEngineVersion = require("@libs/fetchEngineVersion")
 
 local engines = {
     lute = "luau-lang/lute",

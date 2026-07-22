@@ -1,4 +1,4 @@
-local style = require("../libs/cli/style")
+local style = require("@libs/cli/style")
 
 local function execute(cmds: Command, _: any)
 	print(style.bold("Hanan", "yellow") .. " - A Luau Package Manager\n")
